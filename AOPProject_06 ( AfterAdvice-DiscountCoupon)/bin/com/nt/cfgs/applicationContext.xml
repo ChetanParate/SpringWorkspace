@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:util ="http://www.springframework.org/schema/util"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="discountAdvice" class="com.nt.aspects.DiscountCouponAdvice"/>
+
+<bean id="targetClass" class="com.nt.service.ShoppingStore"/>
+
+<bean id = "proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<property name="target" ref="targetClass"/>
+	<property name="interceptorNames">
+		<list>
+			<value>discountAdvice</value>
+		</list>
+	</property>
+</bean>
+
+</beans>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:util ="http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id = "basicDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName" value = "oracle.jdbc.driver.OracleDriver"/>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+	<property name="username" value="chetan"/>
+	<property name="password" value="admin"/>
+</bean>
+<bean id ="template" class = "org.springframework.jdbc.core.JdbcTemplate">
+	<constructor-arg ref="basicDataSource"/>
+</bean>
+<bean id="authDao" class="com.nt.dao.AuthenticateDAO">
+	<property name="jdbcTemplate" ref="template"/>
+</bean>
+<bean id="asManager" class="com.nt.aspects.AuthenticateManager">
+	<property name="dao" ref="authDao"/>
+</bean>
+<bean id="securityAdvice" class="com.nt.aspects.SecurityCheckAdvice">
+	<property name="authManager" ref="asManager"/>
+</bean>
+
+<bean id="targetClass" class="com.nt.service.IntrAmtCalculator"/>
+
+<bean id = "proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<property name="target" ref="targetClass"/>
+	<property name="interceptorNames">
+		<list>
+			<value>securityAdvice</value>
+		</list>
+	</property>
+</bean>
+
+</beans>
