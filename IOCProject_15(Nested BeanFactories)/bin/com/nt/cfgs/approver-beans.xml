@@ -1,0 +1,10 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="bla" class="com.nt.beans.BankLoanApprover">
+	<property name="details">
+		<ref bean="ld"/>
+	</property>
+</bean>
+</beans>
