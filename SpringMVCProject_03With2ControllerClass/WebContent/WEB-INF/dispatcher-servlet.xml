@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:util="http://www.springframework.org/schema/util"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="vhc"  class="com.nt.controller.ViewHomeController"/>
+ <bean id="wc"  class="com.nt.controller.WishController"/>
+ 
+ <bean id="surl" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+ 	<property name = "mappings">
+ 		<props>
+ 			<prop key = "home.htm">vhc</prop>
+ 			<prop key = "wish.htm">wc</prop>
+ 		</props>
+ 	</property>
+ </bean>
+  
+ <!-- View Resolver -->
+ <bean id="vr"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix" value="/WEB-INF/pages/"/>
+       <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
