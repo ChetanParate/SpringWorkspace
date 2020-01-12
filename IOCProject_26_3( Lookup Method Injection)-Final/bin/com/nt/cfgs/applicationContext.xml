@@ -1,0 +1,16 @@
+  <beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+     
+     <bean id = "clrk" class="com.nt.bean.Clerk" scope="prototype">
+     	<property name="name" value="Chetan"/>
+     	<property name="work" value="Java Developer"/>
+     </bean>
+     <bean id = "mgr" class="com.nt.bean.Manager" scope="singleton">
+     <property name="name" value="Roshan"/>
+     <lookup-method name="getClerk" bean ="clrk"/>
+     </bean>
+  </beans>
+   
+   
