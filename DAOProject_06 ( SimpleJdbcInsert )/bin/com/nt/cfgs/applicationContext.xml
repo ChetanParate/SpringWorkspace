@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:util="http://www.springframework.org/schema/util"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd">
+
+<bean id="dbcpds" class="org.apache.commons.dbcp.BasicDataSource">
+   <property name="driverClassName"  value="oracle.jdbc.driver.OracleDriver"/>
+   <property name="url"  value="jdbc:oracle:thin:@localhost:1521:xe"/>
+   <property name="username" value="chetan"/>
+   <property name="password" value="admin"/>
+ </bean> 
+  
+ <bean id="simpleInsert" class="org.springframework.jdbc.core.simple.SimpleJdbcInsert">
+    <constructor-arg ref="dbcpds"/>
+ </bean>
+ <bean id="dao" class="com.nt.dao.StudentDAO">
+    <constructor-arg name ="simpleInsert" ref="simpleInsert"/>
+ </bean>
+ <bean id="service" class="com.nt.service.StudentService">
+     <constructor-arg name="dao" ref="dao"/>
+ </bean>
+</beans>  
+  
+  
