@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id ="st" class="com.nt.beans.Student">
+		<constructor-arg value ="Chetan" type ="java.lang.String"/>
+		<constructor-arg value ="101" type ="int"/>
+		<constructor-arg value ="78.25" type ="float"/>
+	</bean>
+	
+	<bean id = "mk" class = "com.nt.beans.Marks">
+		<constructor-arg value ="90" index="2"/>
+		<constructor-arg value ="70" index="0"/>
+		<constructor-arg value ="77" index="1"/>
+	</bean>	
+	
+	<bean id ="dt" class = "java.util.Date"/>
+	<bean id = "mn" class = "com.nt.beans.Machine">
+		<constructor-arg ref="dt"/>
+		<constructor-arg value ="Chetan"/>
+		<constructor-arg value ="78" index="0"/>
+	</bean>	
+	
+	<bean id = "fty" class = "com.nt.beans.Faculty">
+		<constructor-arg name ="fname" value ="Myau"/>
+		<constructor-arg name ="id" value ="73"/>
+		<constructor-arg name = "subject" value ="java"/>
+	</bean>	
+</beans>

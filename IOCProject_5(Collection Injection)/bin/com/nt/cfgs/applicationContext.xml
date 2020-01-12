@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id = "st" class = "com.nt.beans.Student">
+		<property name="names">
+		<list>
+			<value>Chet</value>
+			<value>Rosh</value>
+			<value>Mishty</value>
+			<value>vivek</value>
+			<value>chet</value>
+		</list>
+		</property>
+	</bean>
+	
+	<bean id = "user" class = "com.nt.beans.User">
+		<property name="phones">
+		<set>
+			<value>9860324144</value>
+			<value>9988667722</value>
+		</set>
+		</property>
+	</bean>
+	
+	<bean id ="dt" class="java.util.Date"/>
+	<bean id = "clg" class = "com.nt.beans.College">
+		<property name="facultySub">
+		<map>
+			<entry key="Chet" value="Adv Java"></entry>
+			<entry>
+				<key><value>Minal</value></key>
+				<value>Core Java</value>
+			</entry>
+			<entry key="Rosh" >
+				<value>Hibernate</value>
+			</entry>
+		</map>
+		</property>
+		
+		<property name="facultyPhones">
+		<map>
+			<entry key="Chet" value-ref="user"/>
+			<entry key-ref="dt" value-ref="user"/>
+		</map>
+		</property>
+	</bean>
+	
+	<bean id="emp" class="com.nt.beans.EmployeeProfile">
+		<property name="empDesgs">
+		<props>
+			<prop key="Chet">Java Developer</prop>
+			<prop key="myau">Software Engineer</prop>
+		</props>
+		</property>
+	</bean>
+</beans>
