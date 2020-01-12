@@ -1,0 +1,11 @@
+
+<web-app>
+  <servlet>
+    <servlet-name>Main</servlet-name>
+    <servlet-class>com.nt.controller.MainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Main</servlet-name>
+    <url-pattern>/controller</url-pattern>
+  </servlet-mapping>
+</web-app>
