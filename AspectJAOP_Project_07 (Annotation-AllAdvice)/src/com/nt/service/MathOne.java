@@ -1,0 +1,21 @@
+package com.nt.service;
+
+public class MathOne {
+	
+	public int add(int x,int y){
+		return x+y;		
+	}
+	public int sub(int x,int y){
+		return x-y;
+	}
+	public int mul(int x ,int y){
+		return x*y;
+	}
+	public float div(int x,int y){
+		
+		if(y==0)
+			throw new ArithmeticException("Divide by Zero");
+		else
+			return (float)x/y;
+	}
+}

@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+	<property name="username" value="chetan"></property>
+	<property name="password" value="admin"/>
+</bean>
+<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+	<constructor-arg ref="basicDataSource"/>
+</bean>
+
+<bean id="authDao" class="com.nt.dao.AuthenticationDAO">
+	<property name="jdbcTemplate" ref="template"/>
+</bean>
+
+<bean id="asManager" class="com.nt.aspects.AuthenticationServiceManager">
+	<property name="dao" ref="authDao"/>
+</bean>
+
+<bean id="securityAdvice" class="com.nt.aspects.SecurityCheckAdvice">
+	<property name="authMan" ref="asManager"/>
+</bean>
+
+<bean id="target" class="com.nt.service.IntrAmtCalculator" />
+
+ <aop:config>
+   <aop:pointcut id="ptc1"  expression="execution(* com.nt.service.IntrAmtCalculator.*(..))"/>
+   <aop:aspect id="securityAspect" ref="securityAdvice">
+       <aop:before method="securityChecking" pointcut-ref="ptc1" />
+   </aop:aspect>
+ </aop:config> 
+</beans>  
+  
