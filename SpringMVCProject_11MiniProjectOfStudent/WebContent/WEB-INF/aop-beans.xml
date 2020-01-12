@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!-- <bean id="txMngr" class="org.springframework.jdbc.datasource.DatasourceTransactionManager"> -->
+<!-- 	<property name="dataSource" ref = "dbcpds"/> -->
+<!-- </bean> -->
+
+<!-- <tx:advice id="txAdvice" transaction-manager="txMngr"> -->
+<!-- 	<tx:attributes> -->
+<!-- 		<tx:method name="list*" propagation="REQUIRED" read-only="true"/> -->
+<!-- 		<tx:method name="register*" propagation="REQUIRED" read-only="false"/> -->
+<!-- 		<tx:method name="search*" propagation="REQUIRED" read-only="true"/> -->
+<!-- 		<tx:method name="update*" propagation="REQUIRED" read-only="false"/> -->
+<!-- 	</tx:attributes> -->
+<!-- </tx:advice> -->
+
+<!-- <aop:config> -->
+<!-- 	<aop:pointcut  id="ptc1" expression="execution(* com.chetan.mvc.service.StudentService.*(..))"/> -->
+<!-- 	<aop:advisor advice-ref="txAdvice" pointcut-ref="ptc1"/> -->
+<!-- </aop:config> -->
+
+</beans> 

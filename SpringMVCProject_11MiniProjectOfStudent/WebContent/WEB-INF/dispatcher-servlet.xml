@@ -1,0 +1,57 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:util="http://www.springframework.org/schema/util"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="slc" class="com.chetan.mvc.controller.StudentsListController">
+	<property name="service" ref="service"/>
+</bean>
+ 
+<bean id="stcmdValidator" class="com.chetan.mvc.validator.StudentCommandValidator"/>
+ 
+ <bean id ="pvc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+ 	<property name="viewName" value="home"/>
+ </bean>
+
+<bean id="suc"  class="com.chetan.mvc.controller.StudentUpdateController">
+ 	<property name="formView" value="edit_students"/>
+ 	<property name="successView" value="edit_result"/>
+ 	<property name="service" ref="service"/>
+ 	<property name="sessionForm" value="true"/>
+ 	<property name="commandName" value="stCommand"/>
+    <property name="commandClass"  value="com.chetan.mvc.command.StudentCommand"/>
+    <property name="validator" ref="stcmdValidator"/>
+ </bean>
+
+ <bean id="sic"  class="com.chetan.mvc.controller.StudentInsertController">
+ 	<property name="formView" value="insert_student"/>
+ 	<property name="successView" value="insert_result"/>
+ 	<property name="service" ref="service"/>
+ 	<property name="sessionForm" value="true"/>
+ 	<property name="commandName" value="stCommand"/>
+    <property name="commandClass"  value="com.chetan.mvc.command.StudentCommand"/>
+    <property name="validator" ref="stcmdValidator"/>
+ </bean>
+ 
+ <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+      <property name="basename" value="com/chetan/mvc/validator/StCommandValidationErrors"/>
+  </bean>                        
+
+ <bean id="surl" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+ 	<property name = "mappings">
+ 		<props>
+ 			<prop key = "home.htm">pvc</prop>
+ 			<prop key = "stlist.htm">slc</prop>
+ 			<prop key = "insert.htm">sic</prop>
+ 			<prop key = "edit.htm">suc</prop>
+ 		</props>
+ 	</property>
+ </bean>
+ 
+ <!-- View Resolver -->
+ <bean id="vr"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix" value="/WEB-INF/pages/"/>
+       <property name="suffix" value=".jsp"/>
+  </bean>
+</beans>
